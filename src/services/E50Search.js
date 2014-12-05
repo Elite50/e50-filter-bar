@@ -22,13 +22,13 @@ angular.module('e50FilterBar')
       this.submitted = true;
       this.resultsFor = angular.copy(this.text);
       // perform fetch
-    };
-    
+    }.bind(this);
+
     this.clear = function() {
       this.submitted = false;
       this.text = "";
       // perform fetch
-    };    
+    }.bind(this);    
     
     // Extend/Override
     angular.extend(this, override);
