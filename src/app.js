@@ -1,0 +1,1 @@
+angular.module('e50FilterBar', ['e50Filter.tpls']);
