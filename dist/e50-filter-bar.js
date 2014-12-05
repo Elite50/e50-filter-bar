@@ -43,7 +43,8 @@ angular.module('e50FilterBar')
     scope: {
       bar: "=filterBar"
     },
-    templateUrl: 'tpl/e50-filter-tpl.html'
+    //templateUrl: 'tpl/e50-filter-tpl.html'
+    templateUrl: 'views/components/cs-filter-bar.tpl.html'
   };
 });
 angular.module('e50FilterBar')
