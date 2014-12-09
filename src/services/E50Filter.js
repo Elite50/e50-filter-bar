@@ -1,7 +1,7 @@
 angular.module('e50FilterBar')
 .factory('E50Filter', function(E50Dropdown, E50Count, E50Views, E50Search) {
   
-  function E50Filter(override) {
+  function E50Filter(options, override) {
 
     // Setup options
     this.options = {
@@ -13,8 +13,8 @@ angular.module('e50FilterBar')
       actions: true
     };
 
-    // Override
-    angular.extend(this.options, override);
+    // Override options
+    angular.extend(this.options, options);
 
     // Result count
     if(this.options.count) {
@@ -37,9 +37,9 @@ angular.module('e50FilterBar')
     if(this.options.sort) {
       this.sort = E50Dropdown.new({
         key: 'name',
-        _reverse: false,
+        asc: false,
         reverse: function() {
-          this._reverse = !this._reverse;
+          this.asc = !this.asc;
         }
       });
     }
@@ -58,6 +58,7 @@ angular.module('e50FilterBar')
     }
 
     // Set the fetch params, which will trigger a request to the server
+    // if you passed in fetchParams into an e50-table
     this.fetch = function() {
       this.fetchParams = {
         sort: this.sort.key,
@@ -65,8 +66,27 @@ angular.module('e50FilterBar')
         q: this.search.text
       };
     }.bind(this);
+
+    // Get the sortBy key
+    this.getSortKey = function() {
+      return this.sort.key;
+    };
+
+    // Get the filter key
+    this.getFilterKey = function() {
+      return this.filter.key;
+    };
+
+    // Get the sorting direction
+    this.asc = function() {
+      return this.sort.asc;
+    };
+
+    // Extend/override if necessary
+    angular.extend(this, override);
   }
 
+  // Expose constructor
   return {
     new: function(data) {
       return new E50Filter(data);

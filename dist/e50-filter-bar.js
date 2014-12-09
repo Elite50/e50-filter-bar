@@ -1,7 +1,7 @@
-angular.module('e50Filter.tpls', ['tpl/e50-filter-tpl.html']);
+angular.module('e50Filter.tpls', ['views/components/e50-filter-bar.tpl.html']);
 
-angular.module("tpl/e50-filter-tpl.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("tpl/e50-filter-tpl.html",
+angular.module("views/components/e50-filter-bar.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("views/components/e50-filter-bar.tpl.html",
     "<div>\n" +
     "  <div ng-if=\"bar.options.count\">{{bar.getCount() || bar.data.length}} {{options.listLabel || 'Results'}}</div>\n" +
     "  \n" +
@@ -41,10 +41,9 @@ angular.module('e50FilterBar')
     // TODO: determine whether this should be terminal or not
     terminal: true,
     scope: {
-      bar: "=filterBar"
+      bar: "=filter"
     },
-    //templateUrl: 'tpl/e50-filter-tpl.html'
-    templateUrl: 'views/components/cs-filter-bar.tpl.html'
+    templateUrl: 'views/components/e50-filter-bar.tpl.html'
   };
 });
 angular.module('e50FilterBar')
@@ -118,7 +117,7 @@ angular.module('e50FilterBar')
 angular.module('e50FilterBar')
 .factory('E50Filter', ["E50Dropdown", "E50Count", "E50Views", "E50Search", function(E50Dropdown, E50Count, E50Views, E50Search) {
   
-  function E50Filter(override) {
+  function E50Filter(options, override) {
 
     // Setup options
     this.options = {
@@ -130,8 +129,8 @@ angular.module('e50FilterBar')
       actions: true
     };
 
-    // Override
-    angular.extend(this.options, override);
+    // Override options
+    angular.extend(this.options, options);
 
     // Result count
     if(this.options.count) {
@@ -154,9 +153,9 @@ angular.module('e50FilterBar')
     if(this.options.sort) {
       this.sort = E50Dropdown.new({
         key: 'name',
-        _reverse: false,
+        asc: false,
         reverse: function() {
-          this._reverse = !this._reverse;
+          this.asc = !this.asc;
         }
       });
     }
@@ -175,6 +174,7 @@ angular.module('e50FilterBar')
     }
 
     // Set the fetch params, which will trigger a request to the server
+    // if you passed in fetchParams into an e50-table
     this.fetch = function() {
       this.fetchParams = {
         sort: this.sort.key,
@@ -182,8 +182,27 @@ angular.module('e50FilterBar')
         q: this.search.text
       };
     }.bind(this);
+
+    // Get the sortBy key
+    this.getSortKey = function() {
+      return this.sort.key;
+    };
+
+    // Get the filter key
+    this.getFilterKey = function() {
+      return this.filter.key;
+    };
+
+    // Get the sorting direction
+    this.asc = function() {
+      return this.sort.asc;
+    };
+
+    // Extend/override if necessary
+    angular.extend(this, override);
   }
 
+  // Expose constructor
   return {
     new: function(data) {
       return new E50Filter(data);
@@ -235,7 +254,7 @@ angular.module('e50FilterBar')
 }]);
 angular.module('e50FilterBar')
 .factory('E50Toggle', function() {
-  // Use as a mixin
+  // Used as a mixin
   return {
     // Set the default open state
     _open: false,
@@ -243,6 +262,11 @@ angular.module('e50FilterBar')
     // Checks open state
     isOpen: function() {
       return this._open;
+    },
+
+    // Checks closed state
+    isClosed: function() {
+      return !this._open;
     },
 
     // Sets the state to open

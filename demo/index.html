@@ -4,8 +4,6 @@
   <meta charset="UTF-8">
   <title>E50 Filter Bar</title>
   <script src="../bower_components/angular/angular.js"></script>
-  <script src="../bower_components/angular-resource/angular-resource.js"></script>
-  <script src="../bower_components/e50-table/dist/e50-table.js"></script>
   <script src="../dist/e50-filter-bar.js"></script>
 </head>
 <body ng-app="app">
@@ -14,12 +12,11 @@
   
   <div ng-controller="MainCtrl">
 
-    <e50-filter-bar filter-bar="filterBar"></e50-filter-bar>
+    <e50-filter-bar filter="filterBar"></e50-filter-bar>
     
     <h2>View type: {{filterBar.views.getView()}}</h2>
 
-    <table e50-table e50-if-data e50-if-no-data="No data found" e50-data="people" e50-filter="filterFn"
-      e50-data-key="d" e50-sort="{{filterBar.sort.key}}" e50-sort-reverse="{{filterBar.sort._reverse}}">
+    <table>
       <thead>
         <tr>
           <th>Name</th>
@@ -27,15 +24,16 @@
         </tr>
       </thead>
       <tbody>
-        <tr e50-table-row e50-hover>
-          <td>{{d.name}}</td>
-          <td>{{d.age}}</td>
+        <tr ng-repeat="person in people | orderBy:filterBar.getSortKey():filterBar.asc() | filter: filterFn">
+          <td>{{person.name}}</td>
+          <td>{{person.age}}</td>
         </tr>
-      </tbody>
+      </tbody>      
     </table>
   </div>
 
   <script src="http://localhost:2342/livereload.js"></script> 
   <script src="main.js"></script>
+  <script src="filterBar.js"></script>
 </body>
 </html>

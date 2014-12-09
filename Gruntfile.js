@@ -14,7 +14,7 @@ module.exports = function(grunt) {
         module: 'e50Filter.tpls'
       },
       main: {
-        src: ['src/tpl/*.html'],
+        src: ['src/views/components/*.html'],
         dest: 'src/tpl/e50-templates.js'
       },
     },      

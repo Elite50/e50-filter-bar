@@ -1,7 +1,7 @@
-angular.module('e50Filter.tpls', ['tpl/e50-filter-tpl.html']);
+angular.module('e50Filter.tpls', ['views/components/e50-filter-bar.tpl.html']);
 
-angular.module("tpl/e50-filter-tpl.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("tpl/e50-filter-tpl.html",
+angular.module("views/components/e50-filter-bar.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("views/components/e50-filter-bar.tpl.html",
     "<div>\n" +
     "  <div ng-if=\"bar.options.count\">{{bar.getCount() || bar.data.length}} {{options.listLabel || 'Results'}}</div>\n" +
     "  \n" +

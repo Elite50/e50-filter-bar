@@ -8,9 +8,8 @@ angular.module('e50FilterBar')
     // TODO: determine whether this should be terminal or not
     terminal: true,
     scope: {
-      bar: "=filterBar"
+      bar: "=filter"
     },
-    //templateUrl: 'tpl/e50-filter-tpl.html'
-    templateUrl: 'views/components/cs-filter-bar.tpl.html'
+    templateUrl: 'views/components/e50-filter-bar.tpl.html'
   };
 });

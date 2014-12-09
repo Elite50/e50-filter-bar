@@ -1,5 +1,5 @@
-var app = angular.module('app', ['e50Table', 'e50FilterBar']);
-app.controller('MainCtrl', function($scope, E50Filter) {
+var app = angular.module('app', ['e50FilterBar']);
+app.controller('MainCtrl', function($scope, filterBar) {
   
   $scope.people = [
     {name: "A Person", age: 13, distributed: true},
@@ -8,40 +8,9 @@ app.controller('MainCtrl', function($scope, E50Filter) {
     {name: "D Person", age: 230},
     {name: "E Person", age: 346, distributed: true}
   ];
-  
-  // New e50 filter
-  var filterBar = $scope.filterBar = E50Filter.new();
-  
-  // setup the views
-  filterBar.views.setViews(['Table', 'List', 'Grid', 'Masonry']);
-  filterBar.views.setDefault('list');
 
-  // setup the sort dropdown
-  filterBar.sort.setOptions([
-    ['id', 'Creation Date'],
-    ['name', 'Alphabetical'],
-    ['age', 'Age']
-  ]);
-  filterBar.sort.onChange(filterBar.fetch);
-
-  // setup our filters
-  filterBar.filter.setOptions([
-    ['all', 'All'],
-    ['me', 'By Me'],
-    ['distribution', 'In Distribution']
-  ]);
-  filterBar.filter.onChange(filterBar.fetch);
-
-  // setup our actions
-  filterBar.actions.setOptions([
-    ['',''],
-    ['export', 'Export'],
-    ['download', 'Download'],
-  ]);
-  filterBar.actions.setKey('');
-  filterBar.actions.onChange(function(value) {
-    // perform specified action
-  });
+  // Pass this into the e50-filter-bar directive
+  var filterBar = $scope.filterBar = filterBar;
 
   $scope.filterFn = function(v) {
     switch(filterBar.filter.getKey()) {

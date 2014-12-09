@@ -1,6 +1,6 @@
 angular.module('e50FilterBar')
 .factory('E50Toggle', function() {
-  // Use as a mixin
+  // Used as a mixin
   return {
     // Set the default open state
     _open: false,
@@ -8,6 +8,11 @@ angular.module('e50FilterBar')
     // Checks open state
     isOpen: function() {
       return this._open;
+    },
+
+    // Checks closed state
+    isClosed: function() {
+      return !this._open;
     },
 
     // Sets the state to open
