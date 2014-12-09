@@ -187,7 +187,7 @@ angular.module('e50FilterBar')
 
     // Get the sortBy key
     this.sortKey = function() {
-      return this.sort.key.value;
+      return this.sort.key.value || this.sort.key;
     };
 
     // Get the filter key

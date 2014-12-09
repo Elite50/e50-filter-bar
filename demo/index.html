@@ -24,7 +24,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="person in people | orderBy:filterBar.getSortKey():filterBar.asc() | filter: filterFn">
+        <tr ng-repeat="person in people | orderBy:filterBar.sortKey():filterBar.asc() | filter: filterFn">
           <td>{{person.name}}</td>
           <td>{{person.age}}</td>
         </tr>
