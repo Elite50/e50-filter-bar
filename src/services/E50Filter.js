@@ -38,16 +38,12 @@ angular.module('e50FilterBar')
       this.sort = E50Dropdown.new({
         key: 'name',
         asc: false,
+        ascLabel: 'ASC',
         reverse: function() {
           this.asc = !this.asc;
+          this.ascLabel = this.asc ? 'DSC' : 'ASC';
         }
       });
-
-      this.sort.reverseLabel = 'ASC';
-      this.sort.reverse = function() {
-        this.asc = !this.asc;
-        this.reverseLabel = this.asc ? 'DSC' : 'ASC';
-      };      
     }
 
     // Action functionality
