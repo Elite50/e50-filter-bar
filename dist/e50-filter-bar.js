@@ -158,6 +158,12 @@ angular.module('e50FilterBar')
           this.asc = !this.asc;
         }
       });
+
+      this.sort.reverseLabel = 'ASC';
+      this.sort.reverse = function() {
+        this.asc = !this.asc;
+        this.reverseLabel = this.asc ? 'DSC' : 'ASC';
+      };      
     }
 
     // Action functionality
@@ -184,19 +190,22 @@ angular.module('e50FilterBar')
     }.bind(this);
 
     // Get the sortBy key
-    this.getSortKey = function() {
-      return this.sort.key;
+    this.sortKey = function() {
+      return this.sort.key.value;
     };
 
     // Get the filter key
-    this.getFilterKey = function() {
-      return this.filter.key;
+    this.filterKey = function() {
+      return this.filter.key.value;
     };
 
     // Get the sorting direction
     this.asc = function() {
       return this.sort.asc;
     };
+
+    // init data object
+    this.data = {};
 
     // Extend/override if necessary
     angular.extend(this, override);
