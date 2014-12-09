@@ -37,7 +37,10 @@ angular.module('e50FilterBar')
     };
 
     // No-op the initial onchange
-    this.onchange = angular.noop;
+    this.onchange = function(value) {
+      this.setKey(value);
+      this.close();
+    }
 
     // Extend/Override
     angular.extend(this, override);
