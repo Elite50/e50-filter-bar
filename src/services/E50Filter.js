@@ -84,6 +84,11 @@ angular.module('e50FilterBar')
       return this.sort.asc;
     };
 
+    // Get search text
+    this.searchText = function() {
+      return this.search.text;
+    };
+
     // init data object
     this.data = {};
 
