@@ -285,18 +285,11 @@ angular.module('e50FilterBar')
     // Sets the state to open
     open: function() {
       this._open = true;
-      $(document).bind('mouseup.e50Toggle', function() {
-        this.close();
-        if(this.scope) {
-          this.scope.$apply();
-        }
-      }.bind(this));
     },
 
     // Sets the state to closed
     close: function() {
       this._open = false;
-      $(document).unbind('mouseup.e50Toggle');
     },
 
     // Toggles the state
