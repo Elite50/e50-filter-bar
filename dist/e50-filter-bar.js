@@ -287,6 +287,9 @@ angular.module('e50FilterBar')
       this._open = true;
       $(document).bind('mouseup.e50Toggle', function() {
         this.close();
+        if(this.scope) {
+          this.scope.$apply();
+        }
       }.bind(this));
     },
 
