@@ -55,7 +55,8 @@ angular.module('e50FilterBar')
     if(this.options.search) {
       this.search = E50Search.new({
         text: "",
-        placeholder: "Search"
+        placeholder: "Search",
+        _closeOnDocumentClick: false
       });
     }
 

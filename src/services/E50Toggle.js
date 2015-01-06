@@ -5,6 +5,8 @@ angular.module('e50FilterBar')
     // Set the default open state
     _open: false,
 
+    _closeOnDocumentClick: true,
+
     // Checks open state
     isOpen: function() {
       return this._open;
@@ -18,6 +20,7 @@ angular.module('e50FilterBar')
     // Sets the state to open
     open: function() {
       this._open = true;
+      if(!this._closeOnDocumentClick) { return; }
       var self = this;
       $timeout(function() {
         $(document).bind('click.e50-toggle', function() {
