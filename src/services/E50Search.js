@@ -1,4 +1,4 @@
-angular.module('e50FilterBar')
+fangular.module('e50FilterBar')
 .factory('E50Search', function(E50Toggle) {
 
   // Filter bar search functionality
@@ -9,6 +9,8 @@ angular.module('e50FilterBar')
 
     // Set the default text field
     this.text = "";
+
+    this.resultsFor = "";
 
     // Set the default placeholder
     this.placeholder = "Search";
@@ -27,6 +29,7 @@ angular.module('e50FilterBar')
     this.clear = function() {
       this.submitted = false;
       this.text = "";
+      this.resultsFor = "";
       // perform fetch
     }.bind(this);    
     

@@ -206,7 +206,7 @@ angular.module('e50FilterBar')
 
     // Get search text
     this.searchText = function() {
-      return this.search.text;
+      return this.search.resultsFor;
     };
 
     // init data object
@@ -223,8 +223,8 @@ angular.module('e50FilterBar')
     }
   }
 }]);
-angular.module('e50FilterBar')
-.factory('E50Search', ["E50Toggle", function(E50Toggle) {
+fangular.module('e50FilterBar')
+.factory('E50Search', function(E50Toggle) {
 
   // Filter bar search functionality
   function Search(override) {
@@ -234,6 +234,8 @@ angular.module('e50FilterBar')
 
     // Set the default text field
     this.text = "";
+
+    this.resultsFor = "";
 
     // Set the default placeholder
     this.placeholder = "Search";
@@ -252,6 +254,7 @@ angular.module('e50FilterBar')
     this.clear = function() {
       this.submitted = false;
       this.text = "";
+      this.resultsFor = "";
       // perform fetch
     }.bind(this);    
     
@@ -265,7 +268,7 @@ angular.module('e50FilterBar')
       return new Search(override);
     }
   };
-}]);
+});
 angular.module('e50FilterBar')
 .factory('E50Toggle', ["$rootScope", "$timeout", function($rootScope, $timeout) {
   // Used as a mixin

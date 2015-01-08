@@ -87,7 +87,7 @@ angular.module('e50FilterBar')
 
     // Get search text
     this.searchText = function() {
-      return this.search.text;
+      return this.search.resultsFor;
     };
 
     // init data object
