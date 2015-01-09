@@ -1,4 +1,4 @@
-fangular.module('e50FilterBar')
+angular.module('e50FilterBar')
 .factory('E50Search', function(E50Toggle) {
 
   // Filter bar search functionality

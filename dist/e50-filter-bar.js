@@ -223,8 +223,8 @@ angular.module('e50FilterBar')
     }
   }
 }]);
-fangular.module('e50FilterBar')
-.factory('E50Search', function(E50Toggle) {
+angular.module('e50FilterBar')
+.factory('E50Search', ["E50Toggle", function(E50Toggle) {
 
   // Filter bar search functionality
   function Search(override) {
@@ -268,7 +268,7 @@ fangular.module('e50FilterBar')
       return new Search(override);
     }
   };
-});
+}]);
 angular.module('e50FilterBar')
 .factory('E50Toggle', ["$rootScope", "$timeout", function($rootScope, $timeout) {
   // Used as a mixin
