@@ -3,10 +3,10 @@ angular.module('app')
   // New e50 filter
   var filterBar = E50Filter.new({
     count: true,
-    filters: true, 
-    views: true,
-    sort: true,
-    actions: true,
+    filters: false, 
+    views: false,
+    sort: false,
+    actions: false,
     search: true
   });
   

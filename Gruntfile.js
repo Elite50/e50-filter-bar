@@ -50,7 +50,7 @@ module.exports = function(grunt) {
     'uglify'
   ]);
 
-  grunt.registerTask('default:watch', [
+  grunt.registerTask('dev', [
     'default',
     'watch'
   ]);
