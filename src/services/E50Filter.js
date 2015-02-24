@@ -10,7 +10,8 @@ angular.module('e50FilterBar')
       views: true,
       sort: true,
       search: true,
-      actions: true
+      actions: true,
+      commaSeparated: true
     };
 
     // Override options
@@ -77,6 +78,14 @@ angular.module('e50FilterBar')
     this.searchText = function() {
       return this.search.resultsFor;
     };
+
+    // Comma separate the data total
+    this.commaSeparated = function(value) {
+      if(this.options.commaSeparated) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      } 
+      return value;
+    }
 
     // init data object
     this.data = {};
