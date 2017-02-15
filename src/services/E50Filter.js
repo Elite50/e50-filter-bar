@@ -1,6 +1,6 @@
 angular.module('e50FilterBar')
 .factory('E50Filter', function(E50Dropdown, E50Count, E50Views, E50Search) {
-  
+
   function E50Filter(options, override) {
 
     // Setup options
@@ -26,8 +26,8 @@ angular.module('e50FilterBar')
     });
 
     // Views toggle
-    this.views = E50Views.new();    
-    
+    this.views = E50Views.new();
+
     // Sort dropdown
     this.sort = E50Dropdown.new({
       key: 'name',
@@ -83,12 +83,9 @@ angular.module('e50FilterBar')
     this.commaSeparated = function(value) {
       if(this.options.commaSeparated) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-      } 
+      }
       return value;
     }
-
-    // init data object
-    this.data = {};
 
     // Extend/override if necessary
     angular.extend(this, override);
