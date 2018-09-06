@@ -1,9 +1,9 @@
 angular.module('e50FilterBar')
-.factory('E50Search', function(E50Toggle) {
+.factory('E50Search', function(E50Toggle, $timeout) {
 
   // Filter bar search functionality
   function Search(override) {
-    
+
     // Mixin toggle functionality
     angular.extend(this, E50Toggle);
 
@@ -26,13 +26,22 @@ angular.module('e50FilterBar')
       // perform fetch
     }.bind(this);
 
+    var changeSubmitTimeout;
+    this.changeSubmit = function() {
+      if (changeSubmitTimeout) {
+        $timeout.cancel(changeSubmitTimeout);
+      }
+
+      changeSubmitTimeout = $timeout(this.submit, 200);
+    }.bind(this);
+
     this.clear = function() {
       this.submitted = false;
       this.text = "";
       this.resultsFor = "";
       // perform fetch
-    }.bind(this);    
-    
+    }.bind(this);
+
     // Extend/Override
     angular.extend(this, override);
   }
